@@ -1,0 +1,39 @@
+ndtset 1
+
+# System setup
+acell 48 48 48
+xcart 24 24 24
+ecut 25
+
+# Atom definition
+natom 1
+ntypat 1
+znucl 2          
+typat 1
+ratsph 5.0
+
+# Electronic structure
+nsppol 2         # Spin-polarized
+nband 5 5        # Enough bands for 6 e⁻
+occopt 2         # Manual occupations
+occ 
+    1.0 0.0 0.0 0.0 0.0
+    0.0 0.0 1.0 0.0 0.0
+cellcharge 0.0
+# only works when MANUALLY EDITING zion in psp8 file
+# not sure if it is physically correct to do so though
+spinat 0 0 2.0   # Net spin = 2 (4↑ - 2↓)
+
+# Pseudopotential
+pp_dirpath "$ABI_PSPDIR"
+pseudos "He-GGA.psp8"
+ixc 11
+
+# k-points (Γ-only)
+kptopt 0
+nkpt 1
+
+# SCF control
+nstep 10
+toldfe 1.0d-6
+diemac 1.0
